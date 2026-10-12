@@ -82,12 +82,13 @@ Add a step that inserts a row in the **Returns** Dataverse table using the value
 
 1. Between the **When an agent calls the workflow** node and the **Respond to the agent** node, select the **+** to add a new step.
 
-1. Search for and select the **Microsoft Dataverse** connector, then select the **Add a new row** action.
+1. Search for and select the **Microsoft Dataverse** connector, then select the **Add a new row to selected environment** action.
 
 1. Configure the action:
 
     | Field | Value |
     |---|---|
+    | Environment | Select your environment from the dropdown. |
     | Table name | Returns |
     | Authorization number | An expression that generates a unique ID. Click into the field, switch to the **Expression** mode in the value picker, paste `concat('RA-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))` (just the expression — nothing else). At runtime this produces values like `RA-20260907143012`. |
     | Customer email | Dynamic content: `customerEmail` from the trigger. |
