@@ -124,7 +124,7 @@ Run one multi-tool prompt that exercises the full multi-agent solution end-to-en
 1. Enter the following prompt and select **Send**:
 
     ```text
-    Priya on order 9876 is returning her BLD-100 blender — the motor keeps shutting off after a few minutes. She'd like a replacement. Authorize the return for a $340 refund, and get her a replacement shipped. Use <your-tenant-email> for both the customer email and the warehouse notification for testing.
+    Priya on order 9876 is returning her BLD-100 blender — the motor keeps shutting off after a few minutes. She'd like a replacement. Authorize the return for a $129.99 refund, and get her a replacement shipped. Use <your-tenant-email> for both the customer email and the warehouse notification for testing.
     ```
 
     Replace `<your-tenant-email>` with the email address of the tenant account you're using for the lab.
