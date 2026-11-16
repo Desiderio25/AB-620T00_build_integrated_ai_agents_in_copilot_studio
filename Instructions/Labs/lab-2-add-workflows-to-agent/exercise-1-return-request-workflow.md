@@ -82,13 +82,15 @@ Add a step that inserts a row in the **Returns** Dataverse table using the value
 
 1. Between the **When an agent calls the workflow** node and the **Respond to the agent** node, select the **+** to add a new step.
 
-1. Search for and select the **Microsoft Dataverse** connector, then select the **Add a new row to selected environment** action.
+1. Search for and select the **Microsoft Dataverse** connector, then select the **Add a new row** action.
+
+    > [!NOTE]
+    > Use the standard Dataverse actions in this lab. They use the current environment and don't require an **Environment** parameter. The preview actions with a selected-environment parameter can prevent publishing when using connections provided by run-only users.
 
 1. Configure the action:
 
     | Field | Value |
     |---|---|
-    | Environment | Select your environment from the dropdown. |
     | Table name | Returns |
     | Authorization number | An expression that generates a unique ID. Click into the field, switch to the **Expression** mode in the value picker, paste `concat('RA-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))` (just the expression — nothing else). At runtime this produces values like `RA-20260907143012`. |
     | Customer email | Dynamic content: `customerEmail` from the trigger. |
@@ -105,7 +107,7 @@ Add a step that inserts a row in the **Returns** Dataverse table using the value
 
 Add a step that emails the customer confirming the return authorization. This produces a real side effect the rep can point to when the customer asks whether the request went through.
 
-1. After the **Add a new row to selected environment** action, select **+** to add another step.
+1. After the **Add a new row** action, select **+** to add another step.
 
 1. Search for and select the **Office 365 Outlook** connector, then select the **Send an email** action.
 
@@ -117,8 +119,8 @@ Add a step that emails the customer confirming the return authorization. This pr
     | Field | Value |
     |---|---|
     | To | Dynamic content: `customerEmail` from the trigger. |
-    | Subject | Type `Return authorized: ` then insert dynamic content **Authorization number** from the previous **Add a new row to selected environment** step's outputs. |
-    | Body | A short confirmation referencing the authorization number, order ID, and reason from the **Add a new row to selected environment** step's outputs. Keep the language neutral so it works for any brand. Use dynamic content for the three values. |
+    | Subject | Type `Return authorized: ` then insert dynamic content **Authorization number** from the previous **Add a new row** step's outputs. |
+    | Body | A short confirmation referencing the authorization number, order ID, and reason from the **Add a new row** step's outputs. Keep the language neutral so it works for any brand. Use dynamic content for the three values. |
 
 ## Task 6 — Fill in the outputs to return to the agent
 
@@ -130,8 +132,8 @@ Fill in the two typed outputs the flow returns to the agent — the authorizatio
 
     | Name | Type | Value |
     |---|---|---|
-    | `authorizationNumber` | Text | Dynamic content: **Authorization number** from the **Add a new row to selected environment** step. |
-    | `expectedRefund` | Number | Dynamic content: **Expected refund** from the **Add a new row to selected environment** step. (This is `0` for now; you'll enrich it from a live Orders lookup in a later exercise.) |
+    | `authorizationNumber` | Text | Dynamic content: **Authorization number** from the **Add a new row** step. |
+    | `expectedRefund` | Number | Dynamic content: **Expected refund** from the **Add a new row** step. (This is `0` for now; you'll enrich it from a live Orders lookup in a later exercise.) |
 
 > [!NOTE]
 > The values above use the flow designer's **dynamic content** picker to reference outputs from earlier steps. If you edit the flow in the code view, you'll see expressions like `outputs('Add_a_new_row')?['body/sup_authorizationnumber']` — that's the underlying reference syntax. The picker builds these for you.
@@ -143,9 +145,6 @@ Publish the flow so the agent can call it. An unpublished flow doesn't appear in
 1. Select the **Save** icon to save the flow.
 
 1. Select **Publish** at the top of the designer.
-
-   > [!NOTE]
-   > If you get the error **Can't publish your workflow**, replace the **Add a new row to selected environment** action with **Add a new row**, configure it with the same table (**Returns**) and row values, and then publish the workflow again.
 
 1. Wait for the confirmation. Return to the **Workflows** list and confirm **Create return authorization** shows status **Published**.
 
