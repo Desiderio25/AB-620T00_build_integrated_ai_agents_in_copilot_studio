@@ -1,7 +1,7 @@
 ---
 lab:
   title: '1.1: Create a Power Platform environment'
-  description: In this exercise, you create a Power Platform developer environment with Dataverse to host the Copilot Studio agent and every component you build in this lab.
+  description: In this exercise, you create a Power Platform Trial environment with Dataverse to host the Copilot Studio agent and every component you build in this lab.
   duration: 10 minutes
   level: 200
   islab: true
@@ -16,11 +16,11 @@ Across this lab, you build the **Customer Support Rep Assistant** — an agent f
 
 A Power Platform **environment** is the top-level container that scopes users, data, and apps. Every Copilot Studio agent runs inside one, and every solution, Dataverse table, workflow, and connection lives inside that same boundary. Choosing the environment intentionally — and confirming Dataverse is available — sets the isolation and governance boundary for everything else in this lab.
 
-In this exercise, you create a **Developer** environment with Dataverse in the Power Platform admin center and switch Copilot Studio into it, so the Customer Support Rep Assistant and its downstream components have a dedicated, isolated place to live.
+In this exercise, you create a **Trial** environment with Dataverse in the Power Platform admin center and switch Copilot Studio into it, so the Customer Support Rep Assistant and its downstream components have a dedicated, isolated place to live.
 
 You will complete the following tasks:
 
-- Create a Developer environment with Dataverse.
+- Create a Trial environment with Dataverse.
 - Confirm the environment is available in Copilot Studio.
 
 This exercise should take approximately **10** minutes to complete.
@@ -30,11 +30,11 @@ This exercise should take approximately **10** minutes to complete.
 To complete this exercise, you need:
 
 - Access to Microsoft Copilot Studio in your environment.
-- Permissions to create a Developer environment in the tenant.
+- Permissions to create a Trial environment in the tenant.
 
-## Task 1 — Create a Developer environment with Dataverse
+## Task 1 — Create a Trial environment with Dataverse
 
-Create the environment that will host your agent and its Dataverse data. Choosing **Developer** keeps this work isolated from any production or shared environments in the tenant, and adding Dataverse at creation time avoids a separate provisioning step later when workflows need tables to write to.
+Create the environment that will host your agent and its Dataverse data. Choosing **Trial** keeps this work isolated from any production or shared environments in the tenant, and adding Dataverse at creation time avoids a separate provisioning step later when workflows need tables to write to.
 
 1. In a web browser, navigate to [Power Platform admin center](https://admin.powerplatform.microsoft.com/manage/environments) at `https://admin.powerplatform.microsoft.com/manage/environments` and sign in with your lab credentials.
 
@@ -47,12 +47,13 @@ Create the environment that will host your agent and its Dataverse data. Choosin
     | Field | Value |
     |---|---|
     | Name | *Your name* |
-    | Type | **Developer** |
+    | Type | **Trial** |
     | Macro Region Geography | **North America** (or the region closest to you) |
+    | Environment group | **None** |
     | Add a Dataverse data store? | **Yes** |
 
-    > [!NOTE]
-    > The **Developer** environment type is free per user and is intended for individual maker work. It doesn't count against production capacity in the tenant.
+   > [!NOTE]
+   > The **Trial** environment type is free per user and is intended for individual maker work. It doesn't count against production capacity in the tenant.
 
 1. Select **Next**. In the **Add Dataverse** step, enter the following values:
 
@@ -60,12 +61,13 @@ Create the environment that will host your agent and its Dataverse data. Choosin
     |---|---|
     | Language | **English (United States)** |
     | Currency | **USD ($)** |
+    | Security group | **None** |
     | Deploy sample apps and data? | **No** |
 
 1. Select **Save** and wait for the environment state to reach **Ready**. Use the **Refresh** button on the command bar to update the status.
 
-    > [!NOTE]
-    > Environment provisioning can take several minutes depending on tenant configuration. If provisioning fails with a capacity error, work with your tenant administrator to free capacity or use an existing Developer environment.
+   > [!NOTE]
+   > Environment provisioning can take several minutes depending on tenant configuration. If provisioning fails with a capacity error, work with your tenant administrator to free capacity or use an existing Developer environment.
 
 ## Task 2 — Confirm the environment is available in Copilot Studio
 
@@ -81,7 +83,7 @@ Switch Copilot Studio into the environment you just created and confirm it's ava
 
 1. Confirm the environment name in the selector matches the environment you created. Every remaining exercise in this lab assumes you are working in this environment.
 
-    > [!NOTE]
-    > If Copilot Studio doesn't load in your new environment, capture your environment ID from the URL in the Power Platform admin center (a GUID such as `12345678-90ab-cdef-1234-567890abcdef`) and navigate directly to `https://copilotstudio.microsoft.com/environments/<your-environment-id>/home`.
+> [!NOTE]
+> If Copilot Studio doesn't load in your new environment, capture your environment ID from the URL in the Power Platform admin center (a GUID such as `12345678-90ab-cdef-1234-567890abcdef`) and navigate directly to `https://copilotstudio.microsoft.com/environments/<your-environment-id>/home`.
 
 You have now provisioned a Power Platform environment configured for Copilot Studio agent authoring — an isolated workspace where you'll build the **Customer Support Rep Assistant** agent and its supporting components throughout this lab. In the next exercise, you create the solution container that packages the agent and every component you add to it.
