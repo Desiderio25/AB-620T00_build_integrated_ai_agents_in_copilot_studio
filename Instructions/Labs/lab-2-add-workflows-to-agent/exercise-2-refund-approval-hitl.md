@@ -110,7 +110,7 @@ In the **If** branch:
     | Approve | `Approve` |
     | Reject | `Reject` |
 
-    Configure each **Switch** case to update the return record in Dataverse. For each case, select the **+** after the case, select **Connector → Microsoft Dataverse → Update a row**, and configure these common settings:
+    Configure each **Switch** case to update the return record in Dataverse. For each case, select the **+** after the case, select **Connectors → Microsoft Dataverse → Update a row**, and configure these common settings:
 
     | Field | Value |
     |---|---|
@@ -146,7 +146,7 @@ Configure the below-threshold branch. When the requested amount is at or below t
 
 In the **Else** branch:
 
-1. Select **Connector → Microsoft Dataverse → Update a row** to add an action targeting the **Returns** table.
+1. Select **Connectors → Microsoft Dataverse → Update a row** to add an action targeting the **Returns** table.
 
 1. Configure:
 
